@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Exports\HaulExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HaulController extends Controller
@@ -113,14 +114,21 @@ class HaulController extends Controller
      */
     public function destroy(Haul $haul)
     {
-        //
+        if ($haul->photo_path && Storage::disk('public')->exists($haul->photo_path)) {
+            Storage::disk('public')->delete($haul->photo_path);
+        }
+
+        $haul->delete();
+        return redirect()
+            ->route('dashboard.hauls.index')
+            ->with('success', 'Data hauling berhasil dihapus');
     }
 
     public function export()
     {
         return Excel::download(
             new HaulExport,
-            'rekap-hauling.xlsx'
+            'EOM Hauling GPU-GE.xlsx'
         );
     }
 }

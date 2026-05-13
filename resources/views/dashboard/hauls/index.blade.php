@@ -107,10 +107,10 @@
                             </td>
                             <td>
                                 <!-- Tombol edit -->
-                                <a href="{{ route('dashboard.hauls.edit', $haul->id) }}" 
+                                <!-- <a href="{{ route('dashboard.hauls.edit', $haul->id) }}" 
                                 class="btn btn-sm btn-warning">
                                     <i class="fas fa-edit"></i>
-                                </a>
+                                </a> -->
 
                                 <!-- Tombol delete -->
                                 <form action="{{ route('dashboard.hauls.destroy', $haul->id) }}" 
