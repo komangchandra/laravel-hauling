@@ -3,119 +3,245 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>PT. Gorby Putra Utama - Document Portal</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .hero-card {
+            border: none;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .hero-title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero-text {
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        .btn-main {
+            background: #2563eb;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .btn-main:hover {
+            background: #1d4ed8;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            color: #4b5563;
+        }
+
+        .feature-item i {
+            color: #22c55e;
+            font-size: 18px;
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 550px;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-<div class="min-h-screen flex flex-col items-center justify-center p-6">
+<div class="container py-5 min-vh-100 d-flex flex-column justify-content-center">
 
-    {{-- Header --}}
-    <header class="w-full max-w-5xl flex justify-between items-center mb-10">
-        <div class="flex items-center space-x-3">
-            {{-- <img
-                src="{{ asset('images/logo.png') }}"
-                alt="Logo"
-                class="w-12 h-12 rounded-lg shadow-md"
-            /> --}}
-            {{-- <h1 class="text-2xl font-bold text-gray-900">
-                GPU & GE
-            </h1> --}}
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center mb-5">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <div class="logo-box">
+                G
+            </div>
+
+            <div>
+                <h4 class="mb-0 fw-bold">
+                    GPU & GE
+                </h4>
+
+                <small class="text-muted">
+                    Portal Hauling Management
+                </small>
+            </div>
+
         </div>
 
         @if (Route::has('login'))
-        <div class="space-x-4">
-            @auth
-            <a
-                href="{{ url('/dashboard') }}"
-                class="text-sm font-medium text-blue-600 hover:underline"
-            >
-                Dashboard
-            </a>
-            @else
-            <a
-                href="{{ route('login') }}"
-                class="text-sm font-medium text-gray-700 hover:text-blue-600"
-            >
-                Login
-            </a>
-            @endauth
-        </div>
+
+            <div>
+
+                @auth
+
+                    <a
+                        href="{{ url('/dashboard') }}"
+                        class="btn btn-primary rounded-pill px-4"
+                    >
+                        Dashboard
+                    </a>
+
+                @else
+
+                    <a
+                        href="{{ route('login') }}"
+                        class="btn btn-outline-primary rounded-pill px-4"
+                    >
+                        Login
+                    </a>
+
+                @endauth
+
+            </div>
+
         @endif
+
     </header>
 
-    {{-- Main Content --}}
-    <main class="flex flex-col lg:flex-row bg-white rounded-2xl shadow-lg overflow-hidden max-w-5xl w-full">
+    <!-- Main -->
+    <div class="card hero-card">
 
-        {{-- Left Content --}}
-        <div class="flex-1 p-10">
-            <h2 class="text-3xl font-semibold mb-3">
-                Selamat Datang di Portal Hauling GPU-GE
-            </h2>
+        <div class="row g-0 align-items-center">
 
-            <p class="text-gray-600 mb-6">
-                Portal Hauling adalah aplikasi management hauling yang dirancang khusus untuk PT. GPU & GE. Portal ini memudahkan Anda dalam mengelola semua aspek operasional hauling dengan efisien dan aman.
-            </p>
+            <!-- Left -->
+            <div class="col-lg-6 p-5">
 
-            <ul class="space-y-3 mb-6 text-sm text-gray-700">
-                <li class="flex items-center gap-2">
-                    <i class="bi bi-check-circle text-green-500"></i>
-                    Keamanan data terenkripsi dan aman
-                </li>
-                <li class="flex items-center gap-2">
-                    <i class="bi bi-check-circle text-green-500"></i>
-                    Akses cepat dan terpusat
-                </li>
-                <li class="flex items-center gap-2">
-                    <i class="bi bi-check-circle text-green-500"></i>
-                    Terintegrasi dengan sistem internal
-                </li>
-            </ul>
+                <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2">
+                    PT. Gorby Putra Utama
+                </span>
 
-            @if (Route::has('login'))
-            <div>
-                @auth
-                <a
-                    href="{{ url('/dashboard') }}"
-                    class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all"
-                >
-                    Buka Dashboard
-                </a>
-                @else
-                <a
-                    href="{{ route('login') }}"
-                    class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all"
-                >
-                    Masuk Sekarang
-                </a>
-                @endauth
+                <h1 class="hero-title mb-4">
+                    Selamat Datang di Portal Hauling GPU-GE
+                </h1>
+
+                <p class="hero-text mb-4">
+                    Portal Hauling adalah aplikasi management hauling yang dirancang
+                    khusus untuk PT. GPU & GE. Sistem ini memudahkan pengelolaan
+                    operasional hauling secara cepat, aman, dan terintegrasi.
+                </p>
+
+                <!-- Features -->
+                <div class="mb-4">
+
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Keamanan data terenkripsi dan aman
+                    </div>
+
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Akses cepat dan terpusat
+                    </div>
+
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Terintegrasi dengan sistem internal
+                    </div>
+
+                </div>
+
+                <!-- Button -->
+                @if (Route::has('login'))
+
+                    @auth
+
+                        <a
+                            href="{{ url('/dashboard') }}"
+                            class="btn btn-primary btn-main"
+                        >
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Buka Dashboard
+                        </a>
+
+                    @else
+
+                        <a
+                            href="{{ route('login') }}"
+                            class="btn btn-primary btn-main"
+                        >
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Masuk Sekarang
+                        </a>
+
+                    @endauth
+
+                @endif
+
             </div>
-            @endif
+
+            <!-- Right -->
+            <div class="col-lg-6 text-center p-4">
+
+                <img
+                    src="{{ asset('images/mining.png') }}"
+                    alt="Mining Illustration"
+                    class="img-fluid hero-image"
+                >
+
+            </div>
+
         </div>
 
-        {{-- Right Illustration --}}
-        <div class="lg:w-1/2 flex items-center justify-center p-6">
-            <img
-                src="{{ asset('images/mining.png') }}"
-                alt="Documents Illustration"
-                class="w-[130%] max-w-none"
-            />
-        </div>
+    </div>
 
-    </main>
-
-    {{-- Footer --}}
-    <footer class="mt-10 text-sm text-gray-500">
+    <!-- Footer -->
+    <footer class="text-center mt-5 text-muted small">
         © {{ date("Y") }} PT. GPU & GE. All rights reserved.
     </footer>
 
 </div>
-</body>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     console.log("Make With ❤️ by Komang Chandra Winata");
-    
 </script>
 
+</body>
 </html>
