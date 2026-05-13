@@ -8,8 +8,10 @@ use App\Models\Partner;
 use App\Models\Period;
 use App\Models\Track;
 use App\Models\User;
+use App\Exports\HaulExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HaulController extends Controller
 {
@@ -111,5 +113,13 @@ class HaulController extends Controller
     public function destroy(Haul $haul)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(
+            new HaulExport,
+            'rekap-hauling.xlsx'
+        );
     }
 }

@@ -15,13 +15,28 @@
             <span>Data Hauling</span>
         </h1>
 
-        <a href="{{ route('dashboard.hauls.create') }}"
-        class="btn btn-primary btn-icon-split">
-            <span class="icon text-white-50">
-                <i class="fas fa-plus fa-sm text-white-50"></i>
-            </span>
-            <span class="text">Tambah Haul</span>
-        </a>
+        <div class="d-flex mx-3">
+
+            <a href="{{ route('dashboard.hauls.export') }}"
+                class="btn btn-success btn-icon-split mx-3">
+
+                <span class="icon text-white-50">
+                    <i class="fas fa-file-excel"></i>
+                </span>
+
+                <span class="text">
+                    Download Excel
+                </span>
+            </a>
+
+            <a href="{{ route('dashboard.hauls.create') }}"
+            class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus fa-sm text-white-50"></i>
+                </span>
+                <span class="text">Tambah Haul</span>
+            </a>
+        </div>
 
     </div>
 
@@ -50,6 +65,7 @@
                             <th>Relasi</th>
                             <th>Rute</th>
                             <th>Vendor</th>
+                            <th>Tonase</th>
                             <th>Ditambahkan oleh</th>
                             <th>Lampiran</th>
                             <th>##</th>
@@ -63,6 +79,7 @@
                             <th>Relasi</th>
                             <th>Rute</th>
                             <th>Vendor</th>
+                            <th>Tonase</th>
                             <th>Ditambahkan oleh</th>
                             <th>Lampiran</th>
                             <th>##</th>
@@ -77,6 +94,7 @@
                             <td>{{ $haul->owner->name }}</td>
                             <td>{{ $haul->track->name }}</td>
                             <td>{{ $haul->partner->short_name }}</td>
+                            <td>{{ $haul->tonage }}</td>
                             <td>{{ $haul->user->name }}</td>
                             <td>
                                 @if($haul->photo_path)

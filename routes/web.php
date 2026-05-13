@@ -49,6 +49,8 @@ Route::middleware(['auth', 'role:Developer|Owner'])
         Route::patch('hauls/{haul}', [HaulController::class, 'update']);
         Route::delete('hauls/{haul}', [HaulController::class, 'destroy'])
             ->name('hauls.destroy');
+        Route::get('hauls/export', [HaulController::class, 'export'])
+            ->name('hauls.export');
 });
 
 Route::middleware(['auth'])
