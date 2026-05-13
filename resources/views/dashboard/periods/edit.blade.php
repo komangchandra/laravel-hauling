@@ -58,11 +58,19 @@
                             required
                         >
                             <option value="">Pilih bulan</option>
-                            @for ($m = 1; $m <= 12; $m++)
-                                <option value="{{ $m }}" {{ old('month', $period->month) == $m ? 'selected' : '' }}>
-                                    {{ DateTime::createFromFormat('!m', $m)->format('F') }}
-                                </option>
-                            @endfor
+
+                            <option value="1" {{ old('month', $period->month) == 1 ? 'selected' : '' }}>Januari</option>
+                            <option value="2" {{ old('month', $period->month) == 2 ? 'selected' : '' }}>Februari</option>
+                            <option value="3" {{ old('month', $period->month) == 3 ? 'selected' : '' }}>Maret</option>
+                            <option value="4" {{ old('month', $period->month) == 4 ? 'selected' : '' }}>April</option>
+                            <option value="5" {{ old('month', $period->month) == 5 ? 'selected' : '' }}>Mei</option>
+                            <option value="6" {{ old('month', $period->month) == 6 ? 'selected' : '' }}>Juni</option>
+                            <option value="7" {{ old('month', $period->month) == 7 ? 'selected' : '' }}>Juli</option>
+                            <option value="8" {{ old('month', $period->month) == 8 ? 'selected' : '' }}>Agustus</option>
+                            <option value="9" {{ old('month', $period->month) == 9 ? 'selected' : '' }}>September</option>
+                            <option value="10" {{ old('month', $period->month) == 10 ? 'selected' : '' }}>Oktober</option>
+                            <option value="11" {{ old('month', $period->month) == 11 ? 'selected' : '' }}>November</option>
+                            <option value="12" {{ old('month', $period->month) == 12 ? 'selected' : '' }}>Desember</option>
                         </select>
                         @error('month')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -71,19 +79,60 @@
 
                     <div class="col-md-6 mb-3">
                         <label for="year" class="form-label font-weight-bold">Tahun</label>
-                        <input
-                            type="number"
+
+                        <select
                             name="year"
                             id="year"
                             class="form-control @error('year') is-invalid @enderror"
-                            placeholder="Masukkan tahun periode"
-                            value="{{ old('year', $period->year) }}"
                             required
-                        />
+                        >
+                            <option value="">Pilih Tahun</option>
+
+                            @for ($year = date('Y'); $year <= date('Y') + 5; $year++)
+
+                                <option value="{{ $year }}"
+                                    {{ old('year', $period->year) == $year ? 'selected' : '' }}>
+
+                                    {{ $year }}
+
+                                </option>
+
+                            @endfor
+                        </select>
                         @error('year')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="is_active" class="form-label font-weight-bold">
+                            Status
+                        </label>
+
+                        <select
+                            name="is_active"
+                            id="is_active"
+                            class="form-control @error('is_active') is-invalid @enderror"
+                            required
+                        >
+                            <option value="1"
+                                {{ old('is_active', $period->is_active) == 1 ? 'selected' : '' }}>
+                                Aktif
+                            </option>
+
+                            <option value="0"
+                                {{ old('is_active', $period->is_active) == 0 ? 'selected' : '' }}>
+                                Tidak Aktif
+                            </option>
+                        </select>
+
+                        @error('is_active')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                 </div>
 
                 <div class="mb-3">
