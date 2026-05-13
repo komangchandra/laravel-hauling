@@ -64,7 +64,7 @@ class HaulOwnerSheetExport implements FromCollection, WithTitle
 
         foreach ($periods as $period) {
 
-            $monthName = match ($period->month) {
+            $monthName = match ((int) $period->month) {
                 1 => 'JANUARI',
                 2 => 'FEBRUARI',
                 3 => 'MARET',
@@ -77,6 +77,7 @@ class HaulOwnerSheetExport implements FromCollection, WithTitle
                 10 => 'OKTOBER',
                 11 => 'NOVEMBER',
                 12 => 'DESEMBER',
+                default => '-',
             };
 
             $headerMonth[] = $monthName;
