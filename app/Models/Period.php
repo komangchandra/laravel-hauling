@@ -8,6 +8,12 @@ class Period extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'month' => 'integer',
+        'year' => 'integer',
+        'is_active' => 'boolean',
+    ];
+
     public function hauls()
     {
         return $this->hasMany(Haul::class);

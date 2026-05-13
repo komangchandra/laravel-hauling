@@ -7,7 +7,6 @@ use App\Models\Track;
 use App\Models\Partner;
 use App\Models\Period;
 use App\Models\Owner;
-use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
