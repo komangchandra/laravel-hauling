@@ -73,26 +73,7 @@
                             <td>{{ $loop->iteration }}</td>
 
                             <td>{{ $period->name }}</td>
-                            <td>
-                                @php
-                                    $months = [
-                                        1 => 'Januari',
-                                        2 => 'Februari',
-                                        3 => 'Maret',
-                                        4 => 'April',
-                                        5 => 'Mei',
-                                        6 => 'Juni',
-                                        7 => 'Juli',
-                                        8 => 'Agustus',
-                                        9 => 'September',
-                                        10 => 'Oktober',
-                                        11 => 'November',
-                                        12 => 'Desember',
-                                    ];
-                                @endphp
-
-                                {{ $months[$period->month] ?? '-' }}
-                            </td>
+                            <td>{{ $period->month_name }}</td>
                             <td>{{ $period->year }}</td>
                             <td>
                                 @if ($period->is_active)

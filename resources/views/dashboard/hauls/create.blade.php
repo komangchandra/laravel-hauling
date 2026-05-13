@@ -31,13 +31,52 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="period_id" class="form-label font-weight-bold">Periode</label>
-                        <select name="period_id" id="period_id" class="form-control{{ $errors->has('period_id') ? ' is-invalid' : '' }}" required>
+                        <select
+                            name="period_id"
+                            id="period_id"
+                            class="form-control{{ $errors->has('period_id') ? ' is-invalid' : '' }}"
+                            required
+                        >
                             <option value="">-- Pilih Periode --</option>
+
                             @foreach ($periods as $period)
-                                <option value="{{ $period->id }}" {{ old('period_id') == $period->id ? 'selected' : '' }}>{{ $period->name }}</option>
+
+                                <option
+                                    value="{{ $period->id }}"
+                                    {{ old('period_id') == $period->id ? 'selected' : '' }}
+                                >
+                                    {{ $period->name }} - {{ $period->month_name }} {{ $period->year }}
+                                </option>
+
                             @endforeach
                         </select>
                         @error('period_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="owner_id" class="form-label font-weight-bold">Owner Coal</label>
+                        <select
+                            name="owner_id"
+                            id="owner_id"
+                            class="form-control{{ $errors->has('owner_id') ? ' is-invalid' : '' }}"
+                            required
+                        >
+                            <option value="">-- Pilih Kode Batu --</option>
+
+                            @foreach ($owners as $owner)
+
+                                <option
+                                    value="{{ $owner->id }}"
+                                    {{ old('owner_id') == $owner->id ? 'selected' : '' }}
+                                >
+                                    {{ $owner->short_name }}
+                                </option>
+
+                            @endforeach
+                        </select>
+                        @error('owner_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

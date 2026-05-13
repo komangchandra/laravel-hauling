@@ -91,7 +91,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $haul->period->name }}</td>
-                            <td>{{ $haul->owner->name }}</td>
+                            <td>{{ $haul->owner->short_name }}</td>
                             <td>{{ $haul->track->name }}</td>
                             <td>{{ $haul->partner->short_name }}</td>
                             <td>{{ $haul->tonage }}</td>

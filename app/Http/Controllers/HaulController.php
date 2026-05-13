@@ -46,6 +46,7 @@ class HaulController extends Controller
         $request->validate([
             'tonage' => 'required|numeric|min:0',
             'photo_path' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'owner_id' => 'required|exists:owners,id',
             'track_id' => 'required|exists:tracks,id',
             'period_id' => 'required|exists:periods,id',
         ]);
@@ -56,7 +57,7 @@ class HaulController extends Controller
         $partner = Partner::findOrFail($user->partner_id);
 
         // ambil owner dari partner
-        $owner = Owner::findOrFail($partner->owner_id);
+        // $owner = Owner::findOrFail($partner->owner_id);
 
         // upload foto jika ada
         $photoPath = null;
@@ -69,7 +70,7 @@ class HaulController extends Controller
             'tonage' => $request->tonage,
             'photo_path' => $photoPath,
 
-            'owner_id' => $owner->id,
+            'owner_id' => $request->owner_id,
             'partner_id' => $partner->id,
 
             'track_id' => $request->track_id,
